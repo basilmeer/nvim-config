@@ -1,6 +1,6 @@
 # Nvim Setup
 
-![Current](https://files.slack.com/files-pri/T7EKH3AJD-F04PG53K3QT/image.png)
+![Current](./image.png)
 
 Theme: rose-pine
 
