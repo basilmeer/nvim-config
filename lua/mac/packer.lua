@@ -72,4 +72,10 @@ use { 'BurntSushi/ripgrep' }
 use { 'windwp/nvim-ts-autotag' }
 use { 'akinsho/nvim-bufferline.lua' }
 -- use { 'feline-nvim/feline.nvim' }
+use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+}
 end)

@@ -27,9 +27,10 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+vim.opt.clipboard = unnamed
+vim.opt.splitright = true
 
 --vim.opt.colorcolumn = "120"
 
 vim.g.mapleader = " "
 vim.g.blamer_enabled = 1
-vim.g.clipboard = unnamed
