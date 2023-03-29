@@ -4,32 +4,80 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'wbthomason/packer.nvim'
+  use { 'wbthomason/packer.nvim' }
 
   use {
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    -- or                            , branch = '0.1.x',
     requires = { {'nvim-lua/plenary.nvim'} }
   }
 
+  -----------------------------------------------------------
+  ------------------------ Themes ---------------------------
+  -----------------------------------------------------------
+  use { 'rose-pine/neovim'}
+  use { 'catppuccin/nvim'}
+  use { 'nyoom-engineering/oxocarbon.nvim' }
+  use { 'rebelot/kanagawa.nvim' }
   use({
-    'rose-pine/neovim',
-    as = 'rose-pine',
+    'folke/tokyonight.nvim',
+    as = 'tokyonight',
     config = function()
-      require("rose-pine").setup()
-      vim.cmd('colorscheme rose-pine')
+      vim.cmd('colorscheme tokyonight-night')
     end
   })
 
+  -----------------------------------------------------------
+  ------------------- Treesitter and co ---------------------
+  -----------------------------------------------------------
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use {'nvim-treesitter/playground'}
 
-  use('nvim-treesitter/playground')
+  -----------------------------------------------------------
+  ------------------ Improved experience --------------------
+  -----------------------------------------------------------
+  use 'mbbill/undotree'
+  use 'tpope/vim-fugitive'
+  use 'karb94/neoscroll.nvim'
+  use {
+    'windwp/nvim-autopairs',
+    config = function() require("nvim-autopairs").setup {} end
+  }
+  use { 'norcalli/nvim-colorizer.lua' }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+  use {
+    'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+  use { 'lewis6991/gitsigns.nvim' }
+  use { 'APZelos/blamer.nvim' }
+  use { 'BurntSushi/ripgrep' }
+  use { 'akinsho/nvim-bufferline.lua' }
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+  -- use { 'windwp/nvim-ts-autotag' }
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+  }
+  use {
+    'akinsho/git-conflict.nvim', tag = "*", config = function()
+    require('git-conflict').setup() end
+  }
+  use { 'juanchanco/vim-jbuilder' }
 
-  use('mbbill/undotree')
-
-  use('tpope/vim-fugitive')
-
+  -----------------------------------------------------------
+  ------------------------ LSPs -----------------------------
+  -----------------------------------------------------------
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v1.x',
@@ -52,68 +100,22 @@ return require('packer').startup(function(use)
       {'rafamadriz/friendly-snippets'}, -- Optional
     }
   }
-
-  use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }
-
-  use 'karb94/neoscroll.nvim'
-
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
-
-  use { 'norcalli/nvim-colorizer.lua' }
-
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
   use { 'onsails/lspkind.nvim' }
-
-  use { 'lewis6991/gitsigns.nvim' }
-
-  use { 'APZelos/blamer.nvim' }
-
-  use { 'BurntSushi/ripgrep' }
-
-  use { 'windwp/nvim-ts-autotag' }
-
-  use { 'akinsho/nvim-bufferline.lua' }
-
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
-
-  use {
-    'goolord/alpha-nvim',
-    requires = { 'nvim-tree/nvim-web-devicons' },
-  }
-
   use({
     "glepnir/lspsaga.nvim",
     branch = "main",
     config = function()
-      require("lspsaga").setup({})
+      require("lspsaga").setup({
+        symbol_in_winbar = {
+          enable = false,
+          separator = "bruv"
+        }
+      })
     end,
     requires = {
       {"nvim-tree/nvim-web-devicons"},
-      --markdown and markdown_inline parser needed
-      --TSInstall markdown markdown_inline
       {"nvim-treesitter/nvim-treesitter"}
     }
   })
-
-  use {
-    'akinsho/git-conflict.nvim', tag = "*", config = function()
-    require('git-conflict').setup() end
-  }
+  use { 'jose-elias-alvarez/null-ls.nvim' }
 end)

@@ -34,3 +34,6 @@ vim.opt.colorcolumn = "267"
 
 vim.g.mapleader = " "
 vim.g.blamer_enabled = 1
+vim.g.blamer_delay = 1500
+vim.g.blamer_prefix = '                                                           '
+
