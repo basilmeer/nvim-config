@@ -48,7 +48,8 @@ ts.setup {
     "swift",
     "css",
     "html",
-    "lua"
+    "lua",
+    "ruby"
   },
   autotag = {
     enable = true,

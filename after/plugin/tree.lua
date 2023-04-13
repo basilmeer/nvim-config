@@ -37,7 +37,7 @@ require("nvim-tree").setup({
     dotfiles = true,
   },
   actions = {
-    open_file = { quit_on_open = false }
+    -- open_file = { quit_on_open = false }
   },
   update_focused_file = {
     enable = true,
